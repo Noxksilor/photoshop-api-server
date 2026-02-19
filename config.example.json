@@ -1,0 +1,7 @@
+{
+  "photoshop_path": "C:\\Program Files\\Adobe\\Adobe Photoshop\\Photoshop.exe",
+  "work_dir": "C:\\ps_jobs\\api_jobs",
+  "default_input": "C:\\ps_jobs\\input\\source.png",
+  "default_output_name": "result.png",
+  "max_execution_seconds": 300
+}
