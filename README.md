@@ -2,6 +2,34 @@
 
 Минимальный HTTP-сервер для работы с Adobe Photoshop через API с использованием JSX-скриптов.
 
+## Quick Start (для ленивых)
+
+Сделайте всё в 5 шагов, чтобы проверить, что всё работает:
+
+1. Установите зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Создайте config.json:
+   ```bash
+   copy config.example.json config.json
+   ```
+
+3. Положите тестовый файл в `C:\ps_jobs\input\source.png` (нарисуйте или найдите любую PNG-картинку).
+
+4. Запустите сервер в одном окне:
+   ```bash
+   python server.py
+   ```
+
+5. Запустите тест-клиент в другом окне:
+   ```bash
+   python test_client.py
+   ```
+
+Ожидаемый результат: Photoshop запускается, а в `C:\ps_jobs\api_tests\test_result.png` появляется обработанный PNG.
+
 ## Установка
 
 1. Клонируйте репозиторий
