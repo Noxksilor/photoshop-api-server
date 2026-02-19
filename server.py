@@ -46,7 +46,7 @@ async def run_script(request: ScriptRequest):
     try:
         os.makedirs(job_dir, exist_ok=True)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to create job directory: {str(e)}")
+        return {"ok": False, "error": f"Failed to create job directory: {str(e)}"}
     
     # Determine output filename
     output_name = request.output_name or config["default_output_name"]
@@ -63,7 +63,7 @@ async def run_script(request: ScriptRequest):
         with open(script_path, "w", encoding="utf-8") as f:
             f.write(script_text)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to save script: {str(e)}")
+        return {"ok": False, "error": f"Failed to save script: {str(e)}"}
     
     # Run Photoshop with the script
     photoshop_cmd = f'"{config["photoshop_path"]}" -r "{script_path}"'
@@ -81,7 +81,7 @@ async def run_script(request: ScriptRequest):
             time.sleep(1)
             if time.time() - start_time > config["max_execution_seconds"]:
                 process.kill()
-                raise HTTPException(status_code=408, detail="Execution timed out")
+                return {"ok": False, "error": "Execution timed out"}
         
         # Check for errors in Photoshop output
         stdout, stderr = process.communicate()
@@ -90,11 +90,11 @@ async def run_script(request: ScriptRequest):
             return {"ok": False, "error": f"Photoshop execution failed: {stderr_text}"}
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to run Photoshop: {str(e)}")
+        return {"ok": False, "error": f"Failed to run Photoshop: {str(e)}"}
     
     # Check if output file exists
     if not os.path.exists(output_path):
-        raise HTTPException(status_code=500, detail="Output file not generated")
+        return {"ok": False, "error": "Output file not generated"}
     
     # Return the output file as FileResponse
     return FileResponse(
