@@ -30,6 +30,28 @@
 
 Ожидаемый результат: Photoshop запускается, а в `C:\ps_jobs\api_tests\test_result.png` появляется обработанный PNG.
 
+## Запуск одним файлом (для ленивых)
+
+Если не хочется возиться с двумя окнами и командами:
+
+1. Установите зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Создайте config.json:
+   ```bash
+   copy config.example.json config.json
+   ```
+
+3. Положите PNG в путь `default_input` из config.json (по умолчанию `C:\ps_jobs\input\source.png`).
+
+4. В проводнике дважды кликните `run_all.bat`.
+
+Ожидание:
+- Если всё ок — файл `C:\ps_jobs\api_tests\test_result.png`
+- Иначе — в окне консоли понятное `ERROR: ...`.
+
 ## Установка
 
 1. Клонируйте репозиторий

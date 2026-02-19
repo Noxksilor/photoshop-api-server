@@ -85,8 +85,9 @@ async def run_script(request: ScriptRequest):
         
         # Check for errors in Photoshop output
         stdout, stderr = process.communicate()
+        stderr_text = stderr.decode("utf-8", errors="replace")
         if process.returncode != 0:
-            raise HTTPException(status_code=500, detail=f"Photoshop execution failed: {stderr.decode('utf-8')}")
+            return {"ok": False, "error": f"Photoshop execution failed: {stderr_text}"}
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to run Photoshop: {str(e)}")

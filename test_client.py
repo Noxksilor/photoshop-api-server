@@ -51,7 +51,10 @@ def main():
         else:
             try:
                 error_data = response.json()
-                error_msg = error_data.get("detail", "Unknown error")
+                if "ok" in error_data and not error_data["ok"]:
+                    error_msg = error_data.get("error", "Unknown error")
+                else:
+                    error_msg = error_data.get("detail", "Unknown error")
             except:
                 error_msg = response.text
             print(f"ERROR: {error_msg}")
