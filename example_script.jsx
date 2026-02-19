@@ -30,6 +30,18 @@ try {
     
 } catch (e) {
     $.writeln("Error: " + e.toString());
-    $.writeln("Stack: " + e.stack);
-    throw e;
+    if (typeof e.stack !== "undefined") {
+        $.writeln("Stack: " + e.stack);
+    }
+    // Clean up if document is open
+    if (typeof docRef !== "undefined" && docRef !== null) {
+        try {
+            docRef.close(SaveOptions.DONOTSAVECHANGES);
+        } catch (closeError) {
+            $.writeln("Error closing document: " + closeError.toString());
+        }
+    }
+    // Exit with error code 1 (but don't throw uncaught exception)
+    $.exit(1);
 }
+
