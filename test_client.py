@@ -1,6 +1,9 @@
 import os
 import json
 import requests
+import sys
+print("Python version:", sys.version)
+print("Requests version:", requests.__version__)
 
 def main():
     # Check config.json exists
@@ -28,7 +31,7 @@ def main():
         script_text = f.read()
     
     # Create output directory if doesn't exist
-    output_dir = r"C:\ps_jobs\api_tests"
+    output_dir = "/c/ps_jobs/api_tests"
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "test_result.png")
     
@@ -46,7 +49,7 @@ def main():
         if response.status_code == 200 and response.headers.get("content-type") == "image/png":
             with open(output_path, "wb") as f:
                 f.write(response.content)
-            print(f"OK: test_result.png saved to {output_path}")
+            print(f"OK: test_result.png saved to {output_path}", flush=True)
             return 0
         else:
             try:
@@ -57,7 +60,7 @@ def main():
                     error_msg = error_data.get("detail", "Unknown error")
             except:
                 error_msg = response.text
-            print(f"ERROR: {error_msg}")
+            print(f"ERROR: {error_msg}", flush=True)
             return 1
             
     except requests.exceptions.ConnectionError:

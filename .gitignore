@@ -1,0 +1,8 @@
+# Ignore test files
+test_simple.py
+config.json
+logs/
+C:/ps_jobs/api_jobs/
+C:/ps_jobs/api_tests/
+*.pyc
+__pycache__/

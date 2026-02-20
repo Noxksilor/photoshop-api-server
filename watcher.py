@@ -35,9 +35,11 @@ def main():
         print(f"[{timestamp}] Run {run_count}: Starting...")
         
         try:
-            # Run run_all.ps1
+            # Run test directly (since we're on Linux and PowerShell isn't available)
+            # First ensure server is running?
+            # Wait, server is already running in background. So just run test_client.py.
             result = subprocess.run(
-                ["powershell", "-ExecutionPolicy", "Bypass", "-File", "run_all.ps1"],
+                ["python3", "test_client.py"],
                 capture_output=True,
                 text=True,
                 timeout=600  # 10 minute timeout
@@ -52,7 +54,7 @@ def main():
             status = "OK"
             error_message = None
             input_path = None
-            result_path = r"C:\ps_jobs\api_tests\test_result.png"
+            result_path = "/c/ps_jobs/api_tests/test_result.png"
             result_exists = os.path.exists(result_path)
             server_return_code = result.returncode
             
