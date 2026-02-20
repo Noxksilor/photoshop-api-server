@@ -1,9 +1,0 @@
-{
-  "timestamp": "2026-02-20T02:28:50.546012",
-  "status": "ERROR",
-  "error_message": "Unknown error",
-  "input_path": "C:\\ps_jobs\\input\\source.png",
-  "result_path": "C:\\ps_jobs\\api_tests\\test_result.png",
-  "result_exists": false,
-  "server_return_code": 1
-}
