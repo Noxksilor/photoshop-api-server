@@ -3,5 +3,7 @@
   "work_dir": "C:\\ps_jobs\\api_jobs",
   "default_input": "C:\\ps_jobs\\input\\source.png",
   "default_output_name": "result.png",
-  "max_execution_seconds": 300
+  "max_execution_seconds": 300,
+  "backend_command": "python C:\\ps_jobs\\job_0001\\orchestrator.py",
+  "backend_output_path": "C:\\ps_jobs\\job_0001\\out\\result.png"
 }
